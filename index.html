@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marknadsföringsmetoder – FOTO-3D</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        background: linear-gradient(to right, #0f172a, #1e293b);
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .content-box {
+        overflow: hidden;
+        opacity: 0;
+        transition: opacity 0.4s ease, padding 0.3s ease;
+        padding-top: 0;
+        max-height: 0;
+      }
+
+      .content-box.open {
+        max-height: none;
+        opacity: 1;
+        padding-top: 1rem;
+      }
+    </style>
+  </head>
+  <body class="text-white min-h-screen p-8">
+    <div class="max-w-6xl mx-auto w-full">
+
+      <section class="mb-20 border-b border-white/10 pb-10">
+        <h2 class="text-2xl font-bold text-center mb-6">Våra paket</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-white/90">
+          <div class="glass rounded-xl p-6">
+            <h3 class="text-lg font-semibold mb-2">Marknadsföringspaket</h3>
+            <p class="mb-2">För dig som vill sticka ut i sociala medier – utan långsiktiga åtaganden.</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Ingen prenumeration</li>
+              <li>Kort bindningstid</li>
+              <li><strong>Social Media Preview</strong></li>
+              <li><strong>White-label</strong></li>
+              <li><strong>Custom scen</strong></li>
+            </ul>
+          </div>
+
+          <div class="glass rounded-xl p-6">
+            <h3 class="text-lg font-semibold mb-2">E-handelspaket</h3>
+            <p class="mb-2">Maximera konverteringen i din webbutik med fotorealistisk produktvisning.</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Prenumeration</li>
+              <li>Längre bindningstid</li>
+              <li><strong>White-label</strong></li>
+              <li><strong>Custom scen</strong></li>
+            </ul>
+          </div>
+
+          <div class="glass rounded-xl p-6">
+            <h3 class="text-lg font-semibold mb-2">Restaurangpaket</h3>
+            <p class="mb-2">Perfekt för menyer och presentationsdisplayer i restaurangmiljö samt hemsida.</p>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Prenumeration</li>
+              <li>Längre bindningstid</li>
+              <li><strong>Meny och restaurangpaket</strong><br><span class="text-white/70">(QR-koder, meny, köttursprung, allergenmärkning m.m.)</span></li>
+            </ul>
+          </div>
+
+          <div class="glass rounded-xl p-6">
+            <h3 class="text-lg font-semibold mb-2">Skräddarsytt paket</h3>
+            <p class="mb-4">Har du särskilda önskemål? Vi hjälper dig ta fram ett paket som passar dina behov.</p>
+            <div class="text-center">
+              <a href="mailto:info@marvify.com" class="inline-block bg-white/10 hover:bg-white/20 transition px-4 py-2 rounded-md text-white text-sm">Kontakta oss</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-3xl font-bold text-center mb-10">Hur når du dina kunder?</h2>
+        <p class="text-sm italic text-center mb-8"></p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="card-grid"></div>
+      </section>
+
+    </div>
+
+    <script>
+      const methods = [
+        {
+          name: "Sociala medier",
+          package: "marknads",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto mb-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 8a6 6 0 00-12 0v2H4a1 1 0 00-1 1v3h2v3h2v-3h6v3h2v-3h2v-3a1 1 0 00-1-1h-2V8z" /></svg>`,
+          long: "Ett paket anpassat för sociala medier – ingen bindningstid gör det enkelt att sätta in som ett kraftfullt marknadsföringsverktyg när det behövs. En särskild social media preview genereras för varje modell, vilket gör att inlägget ser snyggt ut."
+        },
+        {
+          name: "E-post",
+          package: "marknads",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto mb-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m0 8V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2h14a2 2 0 002-2z"/></svg>`,
+          long: "E-postmarknadsföring med FOTO-3D gör varje utskick mer minnesvärt. Kunden får en premiumupplevelse direkt i inkorgen, vilket ökar både klickfrekvens och varumärkesintryck."
+        },
+        {
+          name: "Webbsida",
+          package: "ehandel",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto mb-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4a8 8 0 100 16 8 8 0 000-16zm2 8H8m4-4v8" /></svg>`,
+          long: "Ge dina besökare möjlighet att se produkten i 3D på din webbplats – det ökar både förtroendet och konverteringsgraden. Detta paket är anpassat för att integreras smidigt på webbsidor och e-handelsplattformar."
+        },
+        {
+          name: "SMS/RCS",
+          package: "marknads",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto mb-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h5m-6 4h12M5 20l-1.447-.724A2 2 0 013 17.382V6a2 2 0 012-2h14a2 2 0 012 2v11.382a2 2 0 01-1.553 1.894L19 20H5z" /></svg>`,
+          long: "RCS är framtidens SMS. Med stöd för interaktivt innehåll kan du skicka klickbara FOTO-3D direkt till mobilen – perfekt för kampanjer med wow-effekt."
+        },
+        {
+          name: "Självbetjäning",
+          package: "ehandel",
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto mb-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-4a6 6 0 00-12 0v4a2 2 0 002 2z" /></svg>`,
+          long: "Självbetjäning med 3D ger en interaktiv och visuell upplevelse direkt i exempelvis displayer, kiosker eller digitala menyer. Användaren kan rotera, zooma och utforska produkten i detalj, vilket skapar ett modernt och engagerande sätt att presentera information på plats."
+        },
+        {
+          name: "Anpassat behov",
+          package: null,
+          icon: `<svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto mb-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 3L6 12h12l-3.75 9"/></svg>`,
+          long: "Har du särskilda önskemål eller ett unikt upplägg i åtanke? Vi hjälper gärna till att ta fram en lösning som passar just dina behov."
+        },
+      ];
+
+      const packages = {
+        marknads: {
+          title: "Marknadsföringspaket",
+          /* desc: "För dig som vill sticka ut i sociala medier – utan långsiktiga åtaganden.", */
+          contents: [
+            "Ingen prenumeration",
+            "Kort bindningstid",
+            "Social Media Preview",
+            "White-label",
+            "Custom scen",
+          ],
+        },
+        ehandel: {
+          title: "E-handelspaket",
+          /* desc: "Maximera konverteringen i din webbutik med fotorealistisk produktvisning.", */
+          contents: [
+            "Prenumeration",
+            "Längre bindningstid",
+            "White-label",
+            "Custom scen",
+          ],
+        },
+      };
+
+      const grid = document.getElementById("card-grid");
+
+      methods.forEach((method, index) => {
+        const container = document.createElement("div");
+        container.className =
+          "glass rounded-xl p-6 shadow hover:shadow-lg transition-all cursor-pointer";
+
+        const iconDiv = document.createElement("div");
+        iconDiv.innerHTML = method.icon;
+
+        const title = document.createElement("h2");
+        title.className = "text-xl font-semibold text-center mb-2";
+        title.textContent = method.name;
+
+        const content = document.createElement("div");
+        content.className = "content-box text-sm text-white/90";
+        content.id = `box-${index}`;
+
+        if (method.package) {
+          const pkg = packages[method.package];
+          const core = pkg.contents.filter(c =>
+            c.toLowerCase().includes("prenumeration") ||
+            c.toLowerCase().includes("bindningstid")
+          );
+          const addons = pkg.contents.filter(c =>
+            !c.toLowerCase().includes("prenumeration") &&
+            !c.toLowerCase().includes("bindningstid")
+          );
+
+          content.innerHTML = `
+            <p class="italic text-white/70 mb-1">Vi rekommenderar</p>
+            <h3 class="text-lg font-semibold">${pkg.title}</h3>
+            <ul class="list-disc list-inside space-y-1 mb-2">
+              ${core.map(item => `<li>${item}</li>`).join("")}
+              ${addons.map(item => `<li><strong>${item}</strong></li>`).join("")}
+            </ul>
+            <p class="text-white/70 text-sm">${method.long}</p>
+          `;
+        } else {
+          content.innerHTML = `
+            <h3 class="text-lg font-semibold">Skräddarsytt paket</h3>
+            <p class="mb-4 text-white/90">Vi tar fram ett anpassat upplägg som passar just dig.</p>
+            <p class="text-white/70 text-sm">${method.long}</p>
+            <div class="mt-4 text-center">
+              <a href="mailto:info@marvify.com" class="inline-block bg-white/10 hover:bg-white/20 transition px-4 py-2 rounded-md text-white text-sm">Kontakta oss</a>
+            </div>
+          `;
+        }
+
+        container.appendChild(iconDiv);
+        container.appendChild(title);
+        container.appendChild(content);
+
+        container.addEventListener("click", () => {
+          const isOpen = content.classList.contains("open");
+          document.querySelectorAll(".content-box").forEach((el) => {
+            el.classList.remove("open");
+          });
+          if (!isOpen) {
+            content.classList.add("open");
+          }
+        });
+
+        grid.appendChild(container);
+      });
+    </script>
+  </body>
+</html>
